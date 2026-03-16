@@ -62,3 +62,41 @@ function showMessage(message, type) {
     // Insert the message box after the form
     form.after(msgBox);
 }
+
+// ─── SMOOTH SCROLL + ACTIVE NAV ──────────────────────────
+
+// Grab all nav links
+const navLinks = document.querySelectorAll('nav ul a');
+
+// Highlight the active nav link based on scroll position
+window.addEventListener('scroll', function() {
+
+    // ── Active nav link ──
+    let currentSection = '';
+
+    document.querySelectorAll('section').forEach(function(section) {
+        const sectionTop = section.offsetTop - 80;
+        if (window.scrollY >= sectionTop) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(function(link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + currentSection) {
+            link.classList.add('active');
+        }
+    });
+
+    // ── Fade in sections on scroll ──
+    document.querySelectorAll('section').forEach(function(section) {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < window.innerHeight - 100) {
+            section.classList.add('visible');
+        }
+    });
+});
+
+// ─── RUN FADE IN ON PAGE LOAD ────────────────────────────
+// Trigger for sections already visible when page first loads
+window.dispatchEvent(new Event('scroll'));
