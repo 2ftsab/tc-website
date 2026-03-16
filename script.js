@@ -114,10 +114,9 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Smooth scroll to top on click
+// Smooth scroll to top on click — cross browser compatible
 backToTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    document.body.scrollTop = 0;           // Safari
+    document.documentElement.scrollTop = 0; // Chrome, Firefox, Edge
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
