@@ -102,21 +102,17 @@ window.addEventListener('scroll', function() {
 window.dispatchEvent(new Event('scroll'));
 
 // ─── BACK TO TOP BUTTON ──────────────────────────────────
-
 const backToTopBtn = document.getElementById('back-to-top');
 
-// Show button when user scrolls down 300px
 window.addEventListener('scroll', function() {
-    if (window.scrollY > 300) {
+    if (window.pageYOffset > 300) {
         backToTopBtn.classList.add('show');
     } else {
         backToTopBtn.classList.remove('show');
     }
 });
 
-// Smooth scroll to top on click — GitHub Pages compatible
-backToTopBtn.addEventListener('click', function() {
-    document.querySelector('html').scrollIntoView({ 
-        behavior: 'smooth' 
-    });
+backToTopBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 });
