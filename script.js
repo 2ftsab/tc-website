@@ -44,8 +44,19 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// ─── TRIGGER SCROLL ON PAGE LOAD ─────────────────────────
-window.dispatchEvent(new Event('scroll'));
+// ─── FORCE SCROLL CHECK ──────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+    setInterval(function() {
+        const scrollY = window.pageYOffset || 
+                        document.documentElement.scrollTop || 
+                        document.body.scrollTop || 0;
+        if (scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    }, 300);
+});
 
 // ─── FEEDBACK FORM ───────────────────────────────────────
 form.addEventListener('submit', function(event) {
