@@ -1,5 +1,3 @@
-// ─── FEEDBACK FORM ───────────────────────────────────────
-
 // ─── GRAB ALL ELEMENTS ───────────────────────────────────
 const form = document.querySelector('form');
 const nameInput = document.querySelector('input[type="text"]');
@@ -8,15 +6,14 @@ const feedbackInput = document.querySelector('textarea');
 const navLinks = document.querySelectorAll('nav ul a');
 const backToTopBtn = document.getElementById('back-to-top');
 
-// ─── SINGLE SCROLL LISTENER ──────────────────────────────
-window.addEventListener('scroll', function() {
-    const scrollY = document.documentElement.scrollTop || window.pageYOffset || 0;
+// ─── SCROLL HANDLER ──────────────────────────────────────
+function handleScroll() {
+    const scrollY = document.documentElement.scrollTop;
 
     // ── Active nav link ──
     let currentSection = '';
     document.querySelectorAll('section').forEach(function(section) {
-        const sectionTop = section.offsetTop - 80;
-        if (scrollY >= sectionTop) {
+        if (scrollY >= section.offsetTop - 80) {
             currentSection = section.getAttribute('id');
         }
     });
@@ -30,8 +27,7 @@ window.addEventListener('scroll', function() {
 
     // ── Fade in sections ──
     document.querySelectorAll('section').forEach(function(section) {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop < window.innerHeight - 100) {
+        if (section.getBoundingClientRect().top < window.innerHeight - 100) {
             section.classList.add('visible');
         }
     });
@@ -42,20 +38,21 @@ window.addEventListener('scroll', function() {
     } else {
         backToTopBtn.classList.remove('show');
     }
-});
+}
 
-// ─── FORCE SCROLL CHECK ──────────────────────────────────
-document.addEventListener('DOMContentLoaded', function() {
-    setInterval(function() {
-        const scrollY = window.pageYOffset || 
-                        document.documentElement.scrollTop || 
-                        document.body.scrollTop || 0;
-        if (scrollY > 300) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
-        }
-    }, 300);
+// ─── ATTACH SCROLL LISTENER ──────────────────────────────
+window.addEventListener('scroll', handleScroll);
+
+// ─── POLL AS BACKUP (handles GitHub Pages SES lockdown) ──
+setInterval(handleScroll, 500);
+
+// ─── RUN ONCE ON LOAD ────────────────────────────────────
+handleScroll();
+
+// ─── BACK TO TOP CLICK ───────────────────────────────────
+backToTopBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.documentElement.scrollTop = 0;
 });
 
 // ─── FEEDBACK FORM ───────────────────────────────────────
@@ -102,9 +99,3 @@ function showMessage(message, type) {
 
     form.after(msgBox);
 }
-
-// ─── BACK TO TOP CLICK ───────────────────────────────────
-backToTopBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-});
