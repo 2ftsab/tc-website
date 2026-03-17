@@ -10,7 +10,7 @@ const backToTopBtn = document.getElementById('back-to-top');
 
 // ─── SINGLE SCROLL LISTENER ──────────────────────────────
 window.addEventListener('scroll', function() {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollY = document.documentElement.scrollTop || window.pageYOffset || 0;
 
     // ── Active nav link ──
     let currentSection = '';
