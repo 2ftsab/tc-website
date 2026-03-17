@@ -114,9 +114,9 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Smooth scroll to top on click — cross browser compatible
+// Smooth scroll to top on click — GitHub Pages compatible
 backToTopBtn.addEventListener('click', function() {
-    document.body.scrollTop = 0;           // Safari
-    document.documentElement.scrollTop = 0; // Chrome, Firefox, Edge
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelector('html').scrollIntoView({ 
+        behavior: 'smooth' 
+    });
 });
