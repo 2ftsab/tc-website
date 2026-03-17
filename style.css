@@ -165,6 +165,10 @@ section.visible {
 
 /* ─── BACK TO TOP BUTTON ────────────────────────────── */
 #back-to-top {
+    text-decoration: none;    /* ← add this line */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     bottom: 40px;
     right: 40px;
