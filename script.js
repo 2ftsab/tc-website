@@ -32,12 +32,6 @@ function handleScroll() {
         }
     });
 
-    // ── Back to top button ──
-    if (scrollY > 300) {
-        backToTopBtn.classList.add('show');
-    } else {
-        backToTopBtn.classList.remove('show');
-    }
 }
 
 // ─── ATTACH SCROLL LISTENER ──────────────────────────────
@@ -48,12 +42,6 @@ setInterval(handleScroll, 500);
 
 // ─── RUN ONCE ON LOAD ────────────────────────────────────
 handleScroll();
-
-// ─── BACK TO TOP CLICK ───────────────────────────────────
-backToTopBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.documentElement.scrollTop = 0;
-});
 
 // ─── FEEDBACK FORM ───────────────────────────────────────
 form.addEventListener('submit', function(event) {
