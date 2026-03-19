@@ -109,20 +109,3 @@ darkModeToggle.addEventListener('click', function() {
     }
 });
 
-// ─── HAMBURGER MENU ──────────────────────────────────────
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-links');
-
-// Toggle menu open/close
-hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('open');
-    navMenu.classList.toggle('open');
-});
-
-// Close menu when a nav link is clicked
-navMenu.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-        hamburger.classList.remove('open');
-        navMenu.classList.remove('open');
-    });
-});
