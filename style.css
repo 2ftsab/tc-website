@@ -196,3 +196,72 @@ section.visible {
 #back-to-top:active {
     transform: scale(0.95);
 }
+
+/* ─── DARK MODE TOGGLE BUTTON ───────────────────────── */
+#dark-mode-toggle {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#dark-mode-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* ─── DARK MODE STYLES ──────────────────────────────── */
+body.dark {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark nav {
+    background-color: #16213e;
+}
+
+body.dark h1,
+body.dark h2 {
+    color: #1abc9c;
+}
+
+body.dark p {
+    color: #b0b0b0;
+}
+
+body.dark input,
+body.dark textarea {
+    background-color: #16213e;
+    color: #e0e0e0;
+    border-color: #444;
+}
+
+body.dark input::placeholder,
+body.dark textarea::placeholder {
+    color: #888;
+}
+
+body.dark footer {
+    background-color: #16213e;
+}
+
+body.dark section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease,
+                background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── SMOOTH TRANSITION FOR ALL ELEMENTS ────────────── */
+body, nav, h1, h2, p, input, textarea, footer {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

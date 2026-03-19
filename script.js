@@ -87,3 +87,24 @@ function showMessage(message, type) {
 
     form.after(msgBox);
 }
+
+// ─── DARK MODE TOGGLE ────────────────────────────────────
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+// Remember user preference on page load
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+    darkModeToggle.textContent = '☀️';
+}
+
+darkModeToggle.addEventListener('click', function() {
+    document.body.classList.toggle('dark');
+
+    if (document.body.classList.contains('dark')) {
+        darkModeToggle.textContent = '☀️';
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        darkModeToggle.textContent = '🌙';
+        localStorage.setItem('darkMode', 'disabled');
+    }
+});
