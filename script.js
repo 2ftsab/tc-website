@@ -109,3 +109,58 @@ darkModeToggle.addEventListener('click', function() {
     }
 });
 
+// ─── FETCH API — LOAD POSTS ──────────────────────────────
+const loadPostsBtn = document.getElementById('load-posts-btn');
+const postsContainer = document.getElementById('posts-container');
+const loadingDiv = document.getElementById('loading');
+const postsError = document.getElementById('posts-error');
+
+loadPostsBtn.addEventListener('click', async function() {
+
+    // Step 1: Show loading, hide error, clear old posts
+    loadingDiv.classList.remove('hidden');
+    postsError.classList.add('hidden');
+    postsContainer.innerHTML = '';
+    loadPostsBtn.disabled = true;
+    loadPostsBtn.textContent = 'Loading...';
+
+    try {
+        // Step 2: Fetch data from API
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=6');
+
+        // Step 3: Check if response is ok
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Step 4: Parse JSON data
+        const posts = await response.json();
+
+        // Step 5: Hide loading spinner
+        loadingDiv.classList.add('hidden');
+
+        // Step 6: Loop through posts and create cards
+        posts.forEach(function(post) {
+            const card = document.createElement('div');
+            card.classList.add('post-card');
+            card.innerHTML = `
+                <div class="post-id">Post #${post.id}</div>
+                <h3>${post.title}</h3>
+                <p>${post.body}</p>
+            `;
+            postsContainer.appendChild(card);
+        });
+
+        // Step 7: Update button
+        loadPostsBtn.textContent = 'Refresh Posts';
+        loadPostsBtn.disabled = false;
+
+    } catch (error) {
+        // Step 8: Handle errors
+        loadingDiv.classList.add('hidden');
+        postsError.classList.remove('hidden');
+        postsError.querySelector('p').textContent = `Error: ${error.message}`;
+        loadPostsBtn.textContent = 'Try Again';
+        loadPostsBtn.disabled = false;
+    }
+});

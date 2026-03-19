@@ -15,6 +15,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#posts">Posts</a></li>
             <li><a href="#feedback">Feedback</a></li>
         </ul>
 
@@ -46,6 +47,27 @@
             <button type="submit">Send Feedback</button>
         </form>
     </section>
+
+<!-- Posts Section -->
+<section id="posts">
+    <h2>Posts</h2>
+    <p>Click the button below to load posts from the API.</p>
+
+    <button id="load-posts-btn">Load Posts</button>
+
+    <!-- Loading spinner -->
+    <div id="loading" class="hidden">
+        <p>Loading...</p>
+    </div>
+
+    <!-- Error message -->
+    <div id="posts-error" class="hidden">
+        <p>Something went wrong. Please try again.</p>
+    </div>
+
+    <!-- Posts will appear here -->
+    <div id="posts-container"></div>
+</section>
 
     <!-- Footer -->
     <footer>
